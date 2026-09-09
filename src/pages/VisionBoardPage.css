@@ -1,0 +1,204 @@
+.vision-board-page {
+  background: linear-gradient(180deg, #f5f5dc 0%, #f8f3ee 100%);
+}
+
+.vision-board-shell {
+  display: flex;
+  justify-content: center;
+}
+
+.vision-board-panel {
+  position: relative;
+  width: min(100%, 980px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.58));
+  border: 1px solid var(--border-color);
+  border-radius: 28px;
+  box-shadow: 0 18px 40px rgba(120, 108, 83, 0.08);
+  padding: var(--spacing-xl);
+  overflow: hidden;
+}
+
+.vision-board-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.42),
+    var(--vision-accent-1),
+    var(--vision-accent-2),
+    rgba(255, 255, 255, 0.08)
+  );
+  opacity: 0.18;
+}
+
+.vision-board-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.vision-board-header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.vision-question {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: 0;
+}
+
+.vision-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.vision-option {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 22px;
+  padding: var(--spacing-md);
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
+}
+
+.vision-option:hover {
+  transform: translateY(-3px);
+}
+
+.vision-option.selected {
+  border-color: rgba(58, 58, 58, 0.3);
+  box-shadow: 0 8px 18px rgba(58, 58, 58, 0.08);
+}
+
+.vision-icon {
+  font-size: 1.8rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.vision-option-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  color: #2d2a28;
+}
+
+.vision-option-description {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(58, 58, 58, 0.8);
+}
+
+.vision-selection-summary {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border-color);
+}
+
+.vision-summary-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.vision-selection-summary h3 {
+  font-size: clamp(1.6rem, 2vw, 2.4rem);
+  margin-bottom: 0;
+}
+
+.vision-palette-row {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.vision-color-swatch {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  border: 1px solid rgba(58, 58, 58, 0.1);
+}
+
+.vision-board-builder {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border-color);
+}
+
+.vision-text-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-primary);
+}
+
+.vision-board-builder textarea {
+  width: 100%;
+  min-height: 140px;
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 1rem;
+  resize: vertical;
+  font: inherit;
+  color: var(--text-primary);
+}
+
+.vision-board-builder textarea:focus {
+  outline: none;
+  border-color: var(--accent-hover);
+}
+
+.vision-board-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.save-vision-button {
+  border: none;
+  border-radius: 999px;
+  background: var(--accent-primary);
+  color: var(--text-primary);
+  padding: 0.85rem 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.save-vision-button:hover {
+  background: var(--accent-hover);
+}
+
+.save-message {
+  display: inline-block;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  .vision-board-panel {
+    padding: var(--spacing-lg);
+  }
+
+  .vision-options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vision-color-swatch {
+    width: 42px;
+    height: 42px;
+  }
+}

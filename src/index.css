@@ -1,0 +1,11 @@
+:root {
+  --bs-body-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+body {
+  font-family: var(--bs-body-font-family);
+}
+
+header p.lead {
+  margin-top: 0.5rem;
+}
