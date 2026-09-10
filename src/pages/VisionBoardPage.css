@@ -188,6 +188,16 @@
   font-style: italic;
 }
 
+@media (max-width: 768px) {
+  .vision-board-panel {
+    padding: var(--spacing-lg);
+  }
+
+  .vision-option {
+    min-height: 160px;
+  }
+}
+
 @media (max-width: 640px) {
   .vision-board-panel {
     padding: var(--spacing-lg);
@@ -200,5 +210,14 @@
   .vision-color-swatch {
     width: 42px;
     height: 42px;
+  }
+
+  .vision-board-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .save-vision-button {
+    width: 100%;
   }
 }

@@ -201,6 +201,18 @@ button, .btn {
 }
 
 /* ====== RESPONSIVE ====== */
+html,
+body {
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 @media (max-width: 768px) {
   h1 {
     font-size: 2.5rem;
@@ -211,11 +223,25 @@ button, .btn {
   }
   
   .container {
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
   }
   
   .grid-2x3 {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    line-height: 1.5;
+  }
+
+  h1 {
+    font-size: 2.1rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
   }
 }
 

@@ -2,12 +2,14 @@ import React, { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './LoginPage.css'
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api'
+
 function LoginPage() {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [firstName, setFirstName] = useState('')
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const trimmedEmail = email.trim()
@@ -17,13 +19,27 @@ function LoginPage() {
       return
     }
 
+    const normalizedUser = {
+      email: trimmedEmail,
+      firstName: trimmedFirstName
+    }
+
     localStorage.setItem(
       'liveWithMeUser',
-      JSON.stringify({
-        email: trimmedEmail,
-        firstName: trimmedFirstName
-      })
+      JSON.stringify(normalizedUser)
     )
+
+    try {
+      await fetch(`${API_BASE_URL}/users`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(normalizedUser)
+      })
+    } catch {
+      // Ignore backend create failures and continue to the welcome flow.
+    }
 
     navigate('/welcome')
   }

@@ -49,6 +49,39 @@ const visionOptions: VisionOption[] = [
   }
 ]
 
+const getCurrentUser = () => {
+  const storedUser = localStorage.getItem('liveWithMeUser')
+
+  if (!storedUser) {
+    return null
+  }
+
+  try {
+    const parsedUser = JSON.parse(storedUser)
+
+    if (!parsedUser || typeof parsedUser.email !== 'string' || typeof parsedUser.firstName !== 'string') {
+      return null
+    }
+
+    return {
+      email: parsedUser.email.trim().toLowerCase(),
+      firstName: parsedUser.firstName.trim()
+    }
+  } catch {
+    return null
+  }
+}
+
+const getUserScopedStorageKey = (baseKey: string) => {
+  const currentUser = getCurrentUser()
+
+  if (!currentUser?.email) {
+    return baseKey
+  }
+
+  return `${baseKey}:${currentUser.email}`
+}
+
 function VisionBoardPage() {
   const [selectedVisionId, setSelectedVisionId] = useState<string>(() => {
     const storedSavedBoardId = sessionStorage.getItem('liveWithMeSelectedSavedBoardId')
@@ -134,8 +167,9 @@ function VisionBoardPage() {
   const selectedVision = visionOptions.find((option) => option.id === selectedVisionId) ?? visionOptions[0]
 
   const handleSaveVision = () => {
+    const scopedSavedBoardsKey = getUserScopedStorageKey(SAVED_BOARDS_STORAGE_KEY)
     const existingBoards = normalizeSavedBoards(
-      JSON.parse(localStorage.getItem(SAVED_BOARDS_STORAGE_KEY) || '[]')
+      JSON.parse(localStorage.getItem(scopedSavedBoardsKey) || '[]')
     )
 
     const newBoard: SavedBoard = {
@@ -150,7 +184,7 @@ function VisionBoardPage() {
     }
 
     const updatedBoards = [newBoard, ...existingBoards]
-    localStorage.setItem(SAVED_BOARDS_STORAGE_KEY, JSON.stringify(updatedBoards))
+    localStorage.setItem(scopedSavedBoardsKey, JSON.stringify(updatedBoards))
 
     setSaveMessage('Saved to your board.')
   }

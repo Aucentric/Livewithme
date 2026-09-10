@@ -65,3 +65,23 @@
   font-style: italic;
   color: #544d45;
 }
+
+@media (max-width: 640px) {
+  .welcome-page {
+    padding: 1rem;
+  }
+
+  .welcome-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .welcome-message {
+    font-size: 1rem;
+  }
+
+  .welcome-footer {
+    position: static;
+    margin-top: 1.5rem;
+    padding-bottom: 0.5rem;
+  }
+}

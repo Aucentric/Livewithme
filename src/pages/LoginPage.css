@@ -78,3 +78,17 @@
 .login-button:hover {
   background: #d0b183;
 }
+
+@media (max-width: 480px) {
+  .login-page {
+    padding: 1rem;
+  }
+
+  .login-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .login-button {
+    padding: 0.85rem 1rem;
+  }
+}

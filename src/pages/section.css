@@ -374,16 +374,52 @@
     padding: 1.5rem var(--spacing-md);
   }
 
+  .back-button {
+    margin-right: 0;
+    margin-bottom: 0.75rem;
+  }
+
   .section-header h1 {
     font-size: 1.8rem;
+  }
+
+  .section-header .subtitle {
+    font-size: 0.95rem;
   }
 
   .section-main {
     padding: 1.25rem var(--spacing-md) 1.5rem;
   }
 
+  .content-card {
+    padding: 1rem 1.1rem;
+  }
+
   .items-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  .memory-carousel-header,
+  .memory-carousel-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .memory-carousel-shell {
+    padding: 1rem;
+  }
+
+  .memory-slide {
+    min-height: 280px;
+    padding: 1rem;
+  }
+
+  .memory-slide h3 {
+    font-size: 1.7rem;
+  }
+
+  .memory-slide p {
+    font-size: 0.95rem;
   }
 }
 
@@ -408,5 +444,18 @@
   .items-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
+  }
+
+  .memory-slide {
+    min-height: 240px;
+    padding: 0.75rem;
+  }
+
+  .memory-slide-content {
+    padding: 0.75rem;
+  }
+
+  .memory-slide h3 {
+    font-size: 1.4rem;
   }
 }
