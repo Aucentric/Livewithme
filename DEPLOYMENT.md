@@ -5,7 +5,7 @@ This project is split into two parts:
 1. GitHub Pages hosts the frontend static site.
 2. A Node/Express API hosts the shared user data.
 
-## 1) Deploy the API
+## 1) Deploy the API on Render
 
 Use Render (free tier is enough for this project):
 
@@ -21,7 +21,21 @@ Example URL:
 
 `https://live-with-me-api.onrender.com/api`
 
-## 2) Update the frontend API URL
+## 2) Add a persistent database
+
+The app now supports PostgreSQL through `DATABASE_URL` for durable shared data.
+
+### Create a Render Postgres database
+
+1. In Render, create a new PostgreSQL Database.
+2. Copy the internal or external connection string.
+3. Add it to the Render Web Service environment variables as:
+
+```env
+DATABASE_URL=postgres://username:password@host:port/database
+```
+
+## 3) Update the frontend API URL
 
 Create a local `.env` file from `.env.example`:
 
@@ -35,7 +49,7 @@ Then replace the placeholder with the Render URL:
 VITE_API_BASE_URL=https://live-with-me-api.onrender.com/api
 ```
 
-## 3) Rebuild and redeploy the frontend
+## 4) Rebuild and redeploy the frontend
 
 ```bash
 npm run build
@@ -44,9 +58,11 @@ npm run deploy
 
 After this, the live site will use the public API for shared custom cards and saved boards.
 
-## 4) Test the shared flow
+## 5) Test the shared flow
 
 1. Log in with an email on one browser/device.
 2. Create or save cards and boards.
 3. Log in again with the same email on another device.
 4. Verify the same cards and boards appear.
+
+> If `DATABASE_URL` is not configured, the server will fall back to the local JSON file store, which is temporary and not reliable across restarts.
